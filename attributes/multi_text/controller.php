@@ -114,10 +114,7 @@ class Controller extends DefaultAttributeTypeController
 
     public function composer()
     {
-        if (is_object($this->attributeValue)) {
-            $value = Loader::helper('text')->entities($this->getAttributeValue()->getValue());
-        }
-        print Loader::helper('form')->text($this->field('value'), $value, array('class' => 'span5'));
+        $this->form();
     }
 
 }
