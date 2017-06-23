@@ -31,20 +31,27 @@ class Controller extends DefaultAttributeTypeController
         }
     }
 
+    public function getDisplaySanitizedValue()
+    {
+        return $this->getDisplayValue();
+    }
+
     public function getDisplayValue()
     {
         $this->load();
         $fields = unserialize($this->get('fields'));
+        $output = '';
         if (is_array($fields)) {
             $value = $this->getValue();
             foreach ($fields['handle'] as $key => $item) {
                 if ($this->get('showLabels')) {
-                    echo $fields['name'][$key] . ': ' . $value[$item] . '<br>';
+                    $output .= $fields['name'][$key] . ': ' . $value[$item] . '<br>';
                 } else {
-                    echo $value[$item] . '<br>';
+                    $output .= $value[$item] . '<br>';
                 }
             }
         }
+        return $output;
     }
 
     public function saveKey($data)
